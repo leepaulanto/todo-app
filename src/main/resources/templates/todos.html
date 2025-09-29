@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>My To-Do List</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="navbar">
+    <div class="navbar-brand">TodoApp</div>
+    <div class="navbar-links">
+        <span>Welcome, <strong th:text="${username}">User</strong>!</span>
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit" class="btn btn-logout">Logout</button>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <h2>My To-Do List</h2>
+    <a th:href="@{/todos/new}" class="btn btn-primary">Add New Todo</a>
+    <div th:if="${param.error}" class="error-banner">
+        You do not have permission to perform that action.
+    </div>
+    <table class="todo-table">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Completed</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="todo : ${todos}">
+            <td th:text="${todo.title}">Todo Title</td>
+            <td th:text="${todo.description}">Todo Description</td>
+            <td th:text="${todo.completed ? 'Yes' : 'No'}">No</td>
+            <td>
+                <a th:href="@{/todos/edit/{id}(id=${todo.id})}" class="btn btn-secondary">Edit</a>
+                <a th:href="@{/todos/delete/{id}(id=${todo.id})}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

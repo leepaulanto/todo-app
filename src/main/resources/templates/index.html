@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Todo App</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Welcome to the Todo Application</h1>
+    <p>Please log in or register to manage your tasks.</p>
+    <div class="auth-links">
+        <a th:href="@{/login}" class="btn">Login</a>
+        <a th:href="@{/register}" class="btn">Register</a>
+    </div>
+</div>
+</body>
+</html>
